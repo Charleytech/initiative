@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gela Helping Hand Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --primary-color: #4CAF50; /* A hopeful green */
+            --secondary-color: #FFC107; /* A warm, vibrant yellow/gold */
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+            --white-color: #fff;
+            --text-color: #555;
+            --section-padding: 4rem 2rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--white-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #e6af06;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/load.jpg') no-repeat center center/cover;
+            /* Replace with your image: e.g., url('images/happy-children.jpg') */
+            color: var(--white-color);
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--white-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        section:nth-child(even) {
+            background: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* About & Mission/Vision Section */
+        .about-grid, .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .mission-vision-grid .card {
+            background: var(--white-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .mission-vision-grid .card h3 {
+            color: var(--primary-color);
+        }
+        
+        .mission-vision-grid .card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Impact Section */
+        .impact-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .impact-gallery .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white-color);
+            padding: 1.5rem 1rem 1rem;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Partnership & Donation Section */
+        .donation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .account-details {
+            background: var(--light-color);
+            padding: 2rem;
+            border: 1px dashed var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        .account-details h3 {
+            color: var(--primary-color);
+        }
+
+        .account-details p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .account-details span {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        /* Grant Application Form */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        /* Comments/Reviews Section */
+        .comments-section {
+            background: var(--white-color);
+        }
+        .comment-box {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        #comment-list .comment {
+            background: var(--white-color);
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+        
+        #comment-list .comment strong {
+            color: var(--dark-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-media {
+            margin: 1.5rem 0;
+        }
+        
+        .social-media a {
+            color: var(--white-color);
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-media a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            margin-top: 1rem;
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom button {
+            background: none;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        /* Admin Panel */
+        #admin-panel {
+            display: none; /* Hidden by default */
+            background: #f9f9f9;
+        }
+        
+        #admin-search {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        /* Responsive Design */
+        @media(max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 2.8rem; }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            /* Mobile Nav */
+            .menu-toggle {
+                display: block;
+                z-index: 1001; /* Above nav */
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--white-color);
+                justify-content: center;
+                align-items: center;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 1.5rem 0;
+            }
+            
+            .about-grid, .mission-vision-grid, .donation-grid, .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-grid img {
+                order: -1; /* Image on top */
+                margin-bottom: 2rem;
+            }
+            
+            .donation-grid {
+                gap: 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <!-- AI Generated SVG Logo -->
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="handGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#FFC107;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#f57c00;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#81C784;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M 10,50 C 10,20 30,15 50,30 C 70,15 90,20 90,50 Q 90,70 70,90 L 50,100 L 30,90 Q 10,70 10,50 Z" fill="url(#handGradient)" transform="rotate(-15 50 50) translate(-5, 0) scale(0.8)"/>
+                  <path d="M 20,45 C 20,15 40,10 60,25 C 80,10 100,15 100,45 Q 100,65 80,85 L 60,95 L 40,85 Q 20,65 20,45 Z" fill="url(#heartGradient)" transform="rotate(15 60 45) translate(0, -10) scale(0.95)" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));" />
+                </svg>
+                Gela Helping Hand
+            </a>
+            <nav>
+                <div class="menu-toggle" id="menu-toggle">☰</div>
+                <ul id="nav-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#impact">Our Impact</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#apply">Apply for Grant</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Lifting Hands, Healing Hearts</h1>
+                <p>Gela Helping Hand Initiative is dedicated to bringing hope and tangible support to the underprivileged across Africa, starting with our communities in Nigeria.</p>
+                <a href="#donate" class="btn">Donate Now</a>
+                <a href="#apply" class="btn btn-secondary">Request a Grant</a>
+            </div>
+        </section>
+
+        <!-- History / About Us Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Story</h2>
+                    <p>A journey of compassion and commitment.</p>
+                </div>
+                <div class="about-grid">
+                    <div>
+                        <h3>From a Simple Idea to a Movement</h3>
+                        <p>The Gela Helping Hand Initiative started in 2018 with a small group of friends in Lagos, Nigeria, who were moved by the daily struggles of families in their local community. They began by pooling their own resources to provide meals and school supplies for children who couldn't afford them.</p>
+                        <p>Word of their good deeds spread, and soon, more volunteers and small donations came in. We realized the need was far greater than we could have imagined. This humble beginning blossomed into a registered foundation with a clear mission: to provide sustainable support and create lasting change.</p>
+                        <h3>Expanding Our Reach</h3>
+                        <p>Having made a significant impact across various states in Nigeria, we are now driven by a powerful vision to extend our helping hands to other African nations. We believe that poverty knows no borders, and neither should compassion. Our goal is to partner with local communities across the continent to empower the poor and build a brighter future for all.</p>
+                    </div>
+                    <div>
+                        <img src="images/women.webp" alt="Foundation history image" style="border-radius: 10px;">
+                        <!-- Replace with a real image of your team or an early project -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision Section -->
+        <section id="mission-vision" class="mission-vision">
+             <div class="container">
+                <div class="mission-vision-grid">
+                    <div class="card">
+                        <h3>Our Mission</h3>
+                        <p>To empower vulnerable individuals and communities, particularly women and children, through targeted grants, education, and healthcare support, fostering self-reliance and sustainable development across Africa.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Our Vision</h3>
+                        <p>To create a continent where every person has the opportunity to live a life of dignity, free from poverty, and is empowered to reach their full potential.</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+
+        <!-- Impact Section -->
+        <section id="impact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Impact in Nigeria</h2>
+                    <p>Touching lives, one community at a time. Here are some of the smiles we've helped create.</p>
+                </div>
+                <div class="impact-gallery">
+                    <div class="gallery-item">
+                        <img src="images/award.webp" alt="Child receiving educational materials">
+                         <!-- Replace with your image -->
+                        <div class="overlay"><h4>Educational Support</h4></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/help.jpg" alt="Women in a skills acquisition program">
+                         <!-- Replace with your image -->
+                        <div class="overlay"><h4>Women Empowerment</h4></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/movement.jpg" alt="Food and supplies distribution">
+                         <!-- Replace with your image -->
+                        <div class="overlay"><h4>Food & Supplies Drive</h4></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/health.jpg" alt="Medical outreach program">
+                         <!-- Replace with your image -->
+                        <div class="overlay"><h4>Healthcare Outreach</h4></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership & Donation Section -->
+        <section id="donate">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Partner With Us & Donate</h2>
+                    <p>Your contribution, no matter the size, can change a life. Join us in our mission.</p>
+                </div>
+                <div class="donation-grid">
+                    <div>
+                        <h3>Become a Partner</h3>
+                        <p>We are actively seeking partnerships with corporations, NGOs, and individuals who share our vision. Collaboration amplifies impact. If you're interested in partnering with us on projects, outreach programs, or fundraising events, please contact us.</p>
+                        <a href="#footer" class="btn">Contact Us for Partnership</a>
+                    </div>
+                    <div class="account-details">
+                        <h3>Make a Donation</h3>
+                        <p>Your generous support directly funds our grants and outreach programs. You can donate to the following account:</p>
+                        <p><strong>Account Name:</strong> <span>Gela Helping Hand Initiative</span></p>
+                        <p><strong>Bank Name:</strong> <span>Example Bank Plc</span></p>
+                        <p><strong>Account Number:</strong> <span>1234567890</span></p>
+                        <p><strong>Country:</strong> <span>Nigeria</span></p>
+                        <p style="margin-top: 1rem; font-style: italic;">Thank you for your kindness and generosity!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grant Application Section -->
+        <section id="apply">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Apply for a Grant</h2>
+                    <p>If you are in need of support, please fill out the form below. We review applications on a rolling basis.</p>
+                </div>
+                <form id="grant-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Full Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="stateOfOrigin">State of Origin</label>
+                            <input type="text" id="stateOfOrigin" name="stateOfOrigin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <input type="text" id="nationality" name="nationality" value="Nigerian" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="occupation">Occupation</label>
+                            <input type="text" id="occupation" name="occupation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nin">NIN (National Identification Number)</label>
+                            <input type="text" id="nin" name="nin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passport">Passport Photograph</label>
+                            <input type="file" id="passport" name="passport" accept="image/*" required>
+                        </div>
+                         <div class="form-group full-width">
+                            <label for="grantPurpose">What will you use the grant for? (Be specific)</label>
+                            <textarea id="grantPurpose" name="grantPurpose" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Submit Application</button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Reviews/Comments Section -->
+        <section id="reviews" class="comments-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Reviews & Testimonials</h2>
+                    <p>Hear from our community and share your thoughts.</p>
+                </div>
+                <div class="comment-box">
+                    <h3>Leave a Review</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                             <label for="comment-name">Your Name</label>
+                             <input type="text" id="comment-name" placeholder="Enter your name" required>
+                        </div>
+                       <div class="form-group">
+                             <label for="comment-text">Your Review</label>
+                             <textarea id="comment-text" rows="4" placeholder="Write your review here..." required></textarea>
+                       </div>
+                        <button type="submit" class="btn">Post Review</button>
+                    </form>
+                </div>
+                <div id="comment-list">
+                    <!-- Dummy comment -->
+                    <div class="comment">
+                        <p>"The support from Gela Helping Hand was a lifesaver for my family. They helped me start my small business, and now I can provide for my children."</p>
+                        <strong>- Maryam, Kaduna</strong>
+                    </div>
+                    <!-- New comments will be added here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel Section -->
+        <section id="admin-panel">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Admin Panel - Grant Recipients</h2>
+                </div>
+                <input type="text" id="admin-search" placeholder="Find by name...">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Phone</th>
+                                <th>Grant Purpose</th>
+                                <th>Amount Given (NGN)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grant-recipients-table">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Gela Helping Hand Initiative</h3>
+                <p>Contact us for more information or partnership inquiries.</p>
+                <p><strong>Email:</strong> <a href="mailto:gelahelpinghand@gmail.com">gelahelpinghand@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+2348022922724">+234 8022922724</a></p>
+                <div class="social-media">
+                    <!-- Replace # with your actual social media links -->
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/></svg></a>
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg></a>
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.215 3.793 4.65-1.002.274-2.18.223-2.83.0-1.18.995.14 2.84 2.17 2.84-1.8 1.4-4.1 2-6.4 2-.6 0-1.2-.05-1.8-.1 2.4 1.5 5.2 2.4 8.3 2.4 9.9 0 15.3-8.2 15.3-15.3 0-.2 0-.4 0-.6.9-.7 1.8-1.5 2.5-2.5z"/></svg></a>
+                </div>
+                <div class="footer-bottom">
+                    ©2025 <span id="copyright-year"></span> Gela Helping Hand Initiative. All Rights Reserved.
+                    <button id="admin-login-btn">Admin Login</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Simple text toggle for hamburger/close icon
+        menuToggle.textContent = navLinks.classList.contains('active') ? '\u00D7' : '\u2630';
+    });
+    
+    // Close nav when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+             if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '\u2630';
+             }
+        });
+    });
+
+    // Copyright Year
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Grant Application Form Submission
+    const grantForm = document.getElementById('grant-form');
+    grantForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your application! We have received it and will get back to you soon.');
+        grantForm.reset();
+    });
+    
+    // Comment Form Submission
+    const commentForm = document.getElementById('comment-form');
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('comment-name').value;
+        const text = document.getElementById('comment-text').value;
+        
+        if (name.trim() === '' || text.trim() === '') {
+            alert('Please fill in both name and review fields.');
+            return;
+        }
+
+        const commentList = document.getElementById('comment-list');
+        const newComment = document.createElement('div');
+        newComment.classList.add('comment');
+        newComment.innerHTML = `
+            <p>"${text}"</p>
+            <strong>- ${name}</strong>
+        `;
+        
+        commentList.insertBefore(newComment, commentList.firstChild);
+        
+        commentForm.reset();
+    });
+
+    // --- Admin Panel Logic ---
+    
+    // Dummy Data for Grant Recipients
+    const grantRecipients = [
+        { name: 'Adebayo Johnson', location: 'Lagos, Nigeria', phone: '080********', purpose: 'Small business startup (Tailoring)', amount: 150000 },
+        { name: 'Chidinma Okoro', location: 'Enugu, Nigeria', phone: '070********', purpose: 'Educational support for children', amount: 85000 },
+        { name: 'Musa Bello', location: 'Kano, Nigeria', phone: '090********', purpose: 'Farming equipment purchase', amount: 200000 },
+        { name: 'Funke Williams', location: 'Oyo, Nigeria', phone: '081********', purpose: 'Medical bills for surgery', amount: 350000 },
+        { name: 'Grace Akpan', location: 'Akwa Ibom, Nigeria', phone: '080********', purpose: 'Skills acquisition (Catering)', amount: 120000 },
+    ];
+    
+    const adminLoginBtn = document.getElementById('admin-login-btn');
+    const adminPanel = document.getElementById('admin-panel');
+    const adminSearch = document.getElementById('admin-search');
+    const grantTableBody = document.getElementById('grant-recipients-table');
+
+    // Function to populate the admin table
+    const populateAdminTable = (data) => {
+        grantTableBody.innerHTML = ''; // Clear existing table
+        data.forEach(recipient => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${recipient.name}</td>
+                <td>${recipient.location}</td>
+                <td>${recipient.phone}</td>
+                <td>${recipient.purpose}</td>
+                <td>${recipient.amount.toLocaleString()}</td>
+            `;
+            grantTableBody.appendChild(row);
+        });
+    };
+
+    // Admin Login
+    adminLoginBtn.addEventListener('click', () => {
+        const password = prompt('Enter Admin Password:');
+        if (password === 'Admin@Gela123') {
+            adminPanel.style.display = 'block';
+            adminPanel.scrollIntoView({ behavior: 'smooth' });
+            populateAdminTable(grantRecipients);
+        } else if (password !== null) { // User didn't click cancel
+            alert('Incorrect Password!');
+        }
+    });
+
+    // Admin Search/Filter
+    adminSearch.addEventListener('keyup', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredData = grantRecipients.filter(recipient => 
+            recipient.name.toLowerCase().includes(searchTerm)
+        );
+        populateAdminTable(filteredData);
+    });
+});
+
+
+</script>
+
+</body>
+</html>
